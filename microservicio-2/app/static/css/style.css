@@ -1,0 +1,114 @@
+
+
+
+/* variables globales */
+:root{
+    --redondo1: 50px;
+    --redondo2: 20px;
+    --redondo3: 10px;
+
+    --text-color1: black;
+    --text-color2: white;
+
+    --color-gray: #cfd0d1;
+    --color-green: #43A047;
+    --color-alert: #e90c0c;
+
+    --relleno: 15px;
+
+    --color-gradient: #cfd0d1;
+    --fuente: 'Roboto', sans-serif;
+
+    --font-size1: 22px;
+    --font-size2: 18px;
+    --font-size3: 15px;
+    --font-size4: 14px;
+
+    --duracion-modal-pop: 190ms;
+
+
+    --box-shadow:0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 var(--color-gradient);
+    --box-shadow1: 0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 #2f3238;
+}
+
+.contenedor-primario{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--text-color2);
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    width: fit-content;
+    height: fit-content;
+    border-radius: var(--redondo2);
+    inset: 0 0 0 0;
+    margin: auto;
+    padding: var(--relleno);
+    font-family: var(--fuente);
+}
+.contenedor-primario h2{
+    font-size: var(--font-size2);
+    font-family: var(--fuente);
+    color: var(--text-color1);
+    user-select: none;
+}
+
+.contenedor-slide{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor-slide h2{
+    margin-left: 10px;
+    margin-right: 10px;
+    user-select: none;
+}
+.texto-apagado{
+    color:var(--color-gray) !important;
+}
+.texto-encendido{
+    color: var(--text-color1) !important;
+}
+.slide-off{
+    position: relative;
+    display: block !important;
+    width: 60px;
+    height: 30px;
+    background: var(--color-gray);
+    border-radius: var(--redondo1);
+}
+.slide-off::after{
+    position: absolute;
+    content: '';
+    width: 22px;
+    height: 22px;
+    background: var(--text-color2);
+    border-radius: var(--redondo1);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform: translateX(4px);
+    transition-duration: 200ms;
+}
+.slide-on{
+    position: relative;
+    display: block !important;
+    width: 60px;
+    height: 30px;
+    background: var(--text-color1);
+    border-radius: var(--redondo1);
+}
+.slide-on::after{
+    position: absolute;
+    content: '';
+    width: 22px;
+    height: 22px;
+    background: var(--text-color2);
+    border-radius: var(--redondo1);
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    transform: translateX(34px);
+    transition-duration: 200ms;
+}
