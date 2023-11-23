@@ -31,6 +31,30 @@
     --box-shadow:0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 var(--color-gradient);
     --box-shadow1: 0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 #2f3238;
 }
+.fondo-modal{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0 0 0 0;
+    margin: auto;
+    backdrop-filter: blur(4px);
+}
+.fondo-modal div{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--text-color2);
+    border-radius: var(--redondo1);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+}
+.fondo-modal div label{
+    font-size: var(--font-size1);
+    font-family: var(--fuente);
+    color: var(--text-color1);
+}
 
 .contenedor-opciones{
     display: flex;
