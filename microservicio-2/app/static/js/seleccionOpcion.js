@@ -11,6 +11,14 @@ function cerrarTodosLosWebSockets() {
   }
 
 /**
+* Este metodo manda la pagina al incio (osea la parte inicial de la pagina)
+*/
+function moverPaginaInicio(){
+    // Mover la página al inicio
+    window.scrollTo(0, 0); // Desplaza la página a las coordenadas (0, 0)
+}
+
+/**
  * Este metodo pone un boton que pasemos como parametro en negro y todos los que
  * no sean ese boton en blanco del contenedor de opciones del sistema
  */
@@ -62,6 +70,7 @@ function mostrarOpcionMonitoreo(){
     </div>
     `;
     mostrarMonitoreoTiempoReal();
+    moverPaginaInicio()
 }
 
 /**
@@ -103,6 +112,7 @@ function mostrarOpcionHistorico(){
     </div>
     `;
     cerrarTodosLosWebSockets();
+    moverPaginaInicio();
 }
 
 /**
@@ -132,6 +142,7 @@ function mostrarOpcionPrediccion(){
     </div>
     `;
     obtenerPrediccion();
+    moverPaginaInicio();
 }
 
 //presionamos el boton Monitoreo ya que es la primera opcion
