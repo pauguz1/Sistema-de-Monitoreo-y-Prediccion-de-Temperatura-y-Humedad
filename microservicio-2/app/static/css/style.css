@@ -242,7 +242,7 @@
     display: flex;
     padding: var(--relleno);
     justify-content: flex-start;
-    width: 90%;
+    width: 95%;
     overflow: auto;
 }
 .prediccion-item{
