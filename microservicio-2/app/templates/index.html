@@ -11,67 +11,22 @@
 <body>
 
     <div class="contenedor-opciones">
-        <button>Monitoreo</button>
-        <button>Histórico</button>
-        <button>Predicción</button>
+        <button onclick="mostrarOpcionMonitoreo();activarBotonSeleccionado(this);">Monitoreo</button>
+        <button onclick="mostrarOpcionHistorico();activarBotonSeleccionado(this);">Histórico</button>
+        <button onclick="mostrarOpcionPrediccion();activarBotonSeleccionado(this);">Predicción</button>
     </div>
 
-    <!-- Contenedor para todo lo referente a la opcion seleccionada-->
-    <div class="contenedor-principal">
-        <div class="monitoreo-contenedor-etiquetas">
-            <label>Temperatura: 22º</label>
-            <label>Humedad: 10%</label>
-        </div>
+    <div class="contenedor-total">
 
-        <div class="monitoreo-contenedor-graficas">
-            <div class="monitoreo-graficas">
-                <canvas class='grafica' id="grafica-monitoreo-temperatura"></canvas>
-            </div>
-            
-            <div class="monitoreo-graficas">
-                <canvas class='grafica' id="grafica-monitoreo-humedad"></canvas>
-            </div>
-
-        </div>
     </div>
-
-
     
-    <div class="contenedor-principal">
-        <div class="historico-contenedor-filtro">
-            <div class="historico-contenedor-input">
-                <label>Fecha de inicio</label>
-                <input placeholder="fecha" type="datetime-local" name="" id="">
-            </div>
-            <div class="historico-contenedor-input">
-                <label>Fecha final</label>
-                <input placeholder="fecha" type="datetime-local" name="" id="">
-            </div>
-            <button onclick="filtrarHistorico()">Filtrar</button>
-        </div>
-
-        <div class="monitoreo-contenedor-graficas">
-            <div class="monitoreo-graficas">
-                <canvas class='grafica' id="grafica-historico-temperatura"></canvas>
-            </div>
-            
-            <div class="monitoreo-graficas">
-                <canvas class='grafica' id="grafica-historico-humedad"></canvas>
-            </div>
-
-        </div>
-    </div>
-
     <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/herramientas.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/monitoreo.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/historico.js' %}"></script>
-    <script>
+    <script type="text/javascript" src="{% static 'js/prediccion.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/seleccionOpcion.js' %}"></script>
 
-        
-        
-        
-    </script>
 
 </body>
 </html>

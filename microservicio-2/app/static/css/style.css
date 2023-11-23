@@ -31,6 +31,16 @@
     --box-shadow:0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 var(--color-gradient);
     --box-shadow1: 0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 #2f3238;
 }
+.contenedor-principal{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.contenedor-total{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
 .fondo-modal{
     position: fixed;
     display: flex;
@@ -50,6 +60,7 @@
     box-shadow: var(--box-shadow);
     padding: 20px;
 }
+
 .fondo-modal div label{
     font-size: var(--font-size1);
     font-family: var(--fuente);
@@ -84,10 +95,16 @@
     font-size: var(--font-size-titulo);
     padding: 10px;
 }
-.contenedor-opciones button:hover{
-    background: var(--text-color1);
-    color: var(--text-color2);
+
+.boton-si-seleccionado{
+    background: var(--text-color1) !important;
+    color: var(--text-color2) !important;
 }
+.boton-no-seleccionado{
+    background: var(--text-color2) !important;
+    color: var(--text-color1) !important;
+}
+
 .contenedor-opciones h2{
     font-size: var(--font-size2);
     font-family: var(--fuente);
@@ -198,6 +215,73 @@
 }
 
 /* fin del codigo para la seccion de historico*/
+
+
+
+
+/* inicio del codigo para la seccion de prediccion */
+.text-center{
+    margin-top: 15px;
+    align-self: center;
+    font-size: var(--font-size1);
+    font-family: var(--fuente);
+    color: var(--text-color1);
+}
+
+.prediccion-contenedor-resultados{
+    margin: auto;
+    display: flex;
+    padding: var(--relleno);
+    justify-content: flex-start;
+    width: 90%;
+    overflow: auto;
+}
+.prediccion-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: fit-content;
+    padding: var(--relleno);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--redondo2);
+    margin: 5px;
+}
+.prediccion-item label{
+    font-size: var(--font-size1);
+    font-family: var(--fuente);
+}
+.prediccion-item label:first-child{
+    color: var(--color-gray);
+}
+.prediccion-item label:last-child label{
+    color: var(--color-gray);
+}
+
+/*-------------- Scroll ----------*/
+/* para el grosor del scrollbar */
+.prediccion-contenedor-resultados::-webkit-scrollbar{
+    width: 3px;
+    height: 3px;
+    border-radius: var(--redondo1);
+}
+/* para el boton que se desliza sobre la barra */
+.prediccion-contenedor-resultados::-webkit-scrollbar-thumb{
+    background: var(--color-gray);
+    border-radius: var(--redondo1);
+}
+
+/* para el contenedor de la barra que se desliza */
+.prediccion-contenedor-resultados::-webkit-scrollbar-track{
+    border-radius: var(--redondo1);
+    box-shadow: var(--box-shadow);
+}
+
+/*------------------------*/
+
+/* fin dle codigo para la seccion de prediccion*/
+
 
 
 /* Escritorio extra grande */

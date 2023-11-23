@@ -1,15 +1,15 @@
 
 //------- Codigo que se encarga del historico
-
-var canvas3 = document.getElementById('grafica-historico-temperatura').getContext('2d');//seleccionamos el canvas
-var canvas4 = document.getElementById('grafica-historico-humedad').getContext('2d');//seleccionamos el canva
-var chart3 = new Chart(canvas3,obtenerMoldeGrafica('Temperatura'));//le pasamos el grafico y la data para representarlo
-var chart4 = new Chart(canvas4,obtenerMoldeGrafica('Humedad'));//le pasamos el grafico y la data para representarl
-chart3.update();
-chart4.update(); 
    
 var urlFiltrarHistorico = 'http://'+window.location.hostname+':8001/'
 function filtrarHistorico(){
+    var canvas3 = document.getElementById('grafica-historico-temperatura').getContext('2d');//seleccionamos el canvas
+    var canvas4 = document.getElementById('grafica-historico-humedad').getContext('2d');//seleccionamos el canva
+    var chart3 = new Chart(canvas3,obtenerMoldeGrafica('Temperatura'));//le pasamos el grafico y la data para representarlo
+    var chart4 = new Chart(canvas4,obtenerMoldeGrafica('Humedad'));//le pasamos el grafico y la data para representarl
+    chart3.update();
+    chart4.update();
+    
     let contenedores = document.querySelectorAll('.historico-contenedor-input');
     let fechaInicio = contenedores[0].children[1].value;
     let fechaFinal = contenedores[1].children[1].value;
