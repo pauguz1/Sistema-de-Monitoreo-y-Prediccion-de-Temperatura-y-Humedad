@@ -25,6 +25,8 @@
     --font-size3: 15px;
     --font-size4: 14px;
 
+    --animacion: animacion-pop 110ms alternate linear;
+
     --duracion-modal-pop: 190ms;
 
 
@@ -131,7 +133,7 @@
     font-size: var(--font-size-titulo);
     font-family: var(--fuente);
     color: var(--text-color1);
-
+    animation: var(--animacion);
 }
 .monitoreo-contenedor-etiquetas label{
     margin: 15px;
@@ -163,6 +165,7 @@
     margin: 10px;
     width: 40%;
     height: 400px;
+    animation: var(--animacion);
 }
 
 /* fin del codigo para la seccion de monitoreo en tiempo real*/
@@ -175,6 +178,7 @@
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
+    animation: var(--animacion);
 }
 
 .historico-contenedor-input{
@@ -230,6 +234,7 @@
     font-size: var(--font-size1);
     font-family: var(--fuente);
     color: var(--text-color1);
+    animation: var(--animacion);
 }
 
 .prediccion-contenedor-resultados{
@@ -251,6 +256,7 @@
     box-shadow: var(--box-shadow);
     border-radius: var(--redondo2);
     margin: 5px;
+    animation: var(--animacion);
 }
 .prediccion-item label{
     font-size: var(--font-size1);
@@ -286,7 +292,10 @@
 
 /* fin dle codigo para la seccion de prediccion*/
 
-
+@keyframes animacion-pop {
+    from { transform: scale(-0.2); }
+    to { transform: scale(1); }
+}
 
 /* Escritorio extra grande */
 @media only screen and (min-width: 1200px){
