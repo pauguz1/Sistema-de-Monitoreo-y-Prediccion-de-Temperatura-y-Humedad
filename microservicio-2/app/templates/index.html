@@ -6,108 +6,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Lámpara</title>
+    <title>Sistema de Monitoreo</title>
 </head>
 <body>
 
-    <div class="contenedor-primario">
-        <h2>Lámpara</h2>
-        <div class="contenedor-slide">
-            <h2 class="texto-apagado">Apagada</h2>
-            <div onclick="slideLampara()" class="slide-off"></div>
+    <div class="contenedor-opciones">
+        <button>Monitoreo</button>
+        <button>Histórico</button>
+        <button>Predicción</button>
+    </div>
+
+    <!-- Contenedor para todo lo referente a la opcion seleccionada-->
+    <div class="contenedor-principal">
+        <div class="monitoreo-contenedor-etiquetas">
+            <label>Temperatura: 22º</label>
+            <label>Humedad: 10%</label>
+        </div>
+
+        <div class="monitoreo-contenedor-graficas">
+            <div class="monitoreo-graficas">
+                <canvas class='grafica' id="grafica-monitoreo-temperatura"></canvas>
+            </div>
+            
+            <div class="monitoreo-graficas">
+                <canvas class='grafica' id="grafica-monitoreo-humedad"></canvas>
+            </div>
+
         </div>
     </div>
 
+
+    
+    <div class="contenedor-principal">
+        <div class="historico-contenedor-filtro">
+            <div class="historico-contenedor-input">
+                <label>Fecha de inicio</label>
+                <input placeholder="fecha" type="datetime-local" name="" id="">
+            </div>
+            <div class="historico-contenedor-input">
+                <label>Fecha final</label>
+                <input placeholder="fecha" type="datetime-local" name="" id="">
+            </div>
+            <button>Filtrar</button>
+        </div>
+
+        <div class="monitoreo-contenedor-graficas">
+            <div class="monitoreo-graficas">
+                <canvas class='grafica' id="grafica-historico-temperatura"></canvas>
+            </div>
+            
+            <div class="monitoreo-graficas">
+                <canvas class='grafica' id="grafica-historico-humedad"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/monitoreo.js' %}"></script>
     <script>
 
-        /*const active = new WebSocket('ws://localhost:61613/monitor/');
-
-        // para despues de conectarnos al socket cambiar el estado de la lampara
-        active.onopen = function() {
-            console.log('siii active');
-            active.send('1');
-        }
-        active.onmessage = function(event) {
-            //event.data
-            console.log(event.data)
-        };*/
-
-        //127.0.0.1
-
-
-        //const active = new WebSocket('ws://localhost:61623/');
-
-        var hostname = window.location.hostname;
-        const socketEstadoLampara = new WebSocket('ws://'+hostname+':8080');
-        const socketPeticionEstadoLampara = new WebSocket('ws://'+hostname+':8080');
-        const socketControlLampara = new WebSocket('ws://'+hostname+':8080');
-
-        // para despues de conectarnos al socket para ver estado de la lampara
-        socketEstadoLampara.onopen = function() {
-            socketEstadoLampara.send(JSON.stringify({ type: 'subscribe', channel: 'estado_lampara' }));
-        };
-        // para despues de conectarnos al socket cambiar el estado de la lampara
-        socketControlLampara.onopen = function() {
-            socketControlLampara.send(JSON.stringify({ type: 'subscribe', channel: 'control_lampara' }));
-        };
-        
-        socketEstadoLampara.onmessage = function(event) {
-            //event.data
-            // si la lampara esta encendida entonces ponemos el slide en encendido
-            const data = JSON.parse(event.data);
-            console.log(data.content)
-            if(data.content == '1'){
-                accionSlide(true);
-            }else if(data.content == '0'){
-                accionSlide(false);
-            }
-        };
-
-        /* 
-            Enviamos un mensaje al socket para que el Microcontrolador mande el estado a la lampara
-        */
-        socketPeticionEstadoLampara.onopen = function() {
-            socketPeticionEstadoLampara.send(JSON.stringify({ type: 'subscribe', channel: 'peticion_estado_lampara' }));
-            socketPeticionEstadoLampara.send(JSON.stringify({ type: 'message', message:'1' }));
-        };
-
-
-        function accionSlide(estado){
-            let contenedorSlide = document.querySelector('.contenedor-slide');
-            let textoSlide = contenedorSlide.children[0];
-            let slide = contenedorSlide.children[1];
-            //si el estado es true ponemos el slide en encendido
-            if(estado == true){
-                slide.classList.remove('slide-off');
-                slide.classList.add('slide-on');
-                textoSlide.classList.remove('texto-apagado');
-                textoSlide.classList.add('texto-encendido');
-                textoSlide.innerHTML= 'Encendida';
-            }else{// si es false lo ponemos en apagado
-                slide.classList.remove('slide-on');
-                slide.classList.add('slide-off');
-                textoSlide.classList.remove('texto-encendido');
-                textoSlide.classList.add('texto-apagado');
-                textoSlide.innerHTML= 'Apagada';
-            }
-        }
-
-        function slideLampara(){
-            let contenedorSlide = document.querySelector('.contenedor-slide');
-            let textoSlide = contenedorSlide.children[0];
-            let slide = contenedorSlide.children[1];
-            // si el slide esta encendido entonces lo apagamos
-            if(slide.classList.contains('slide-on')== true){
-                socketControlLampara.send(JSON.stringify({ type: 'message', message:'0' }));
-            }else{// si el slide esta apagado entonces lo encendemos
-                socketControlLampara.send(JSON.stringify({ type: 'message', message:'1' }));
-            }
-        }
-        
 
         
-
+        
+        
     </script>
-    
+
 </body>
 </html>

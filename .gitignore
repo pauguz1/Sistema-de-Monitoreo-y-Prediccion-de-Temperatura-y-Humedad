@@ -4,3 +4,4 @@
 *.pyc
 ./microservicio-1/.env/*
 ./microservicio-2/.env/*
+./microservicio-3/.env/*
