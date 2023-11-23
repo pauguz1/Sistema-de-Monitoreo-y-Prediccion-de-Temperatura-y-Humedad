@@ -178,6 +178,8 @@
 }
 
 .historico-contenedor-input{
+    background: var(--text-color2);
+    color: var(--text-color1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -196,6 +198,7 @@
     border-radius: var(--redondo1);
     font-size: var(--font-size2);
     font-family: var(--fuente);
+    background: var(--text-color2);
     color: var(--text-color1);
     padding: 5px;
 }
