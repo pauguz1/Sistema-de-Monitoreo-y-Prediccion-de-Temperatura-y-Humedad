@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'app'
@@ -48,6 +49,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',  
     ],
 }
+CORS_ALLOW_ALL_ORIGINS = True  # Esto permitirá todas las solicitudes de cualquier origen
+# O bien, puedes especificar los orígenes permitidos de esta manera:
+# CORS_ALLOWED_ORIGINS = [
+#     "https://mi-sitio-1.com",
+#     "https://mi-sitio-2.com",
+#     # Agrega más orígenes permitidos si es necesario
+# ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,6 +66,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'microservicio3.urls'

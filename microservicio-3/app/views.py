@@ -109,7 +109,7 @@ class  LecturaView(APIView):
 
 #para los filtros de busqueda de estanque
 class LecturaFiltroView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     def get_object(self, pk):
         try:
             return Lectura.objects.get(pk=pk)
@@ -117,11 +117,12 @@ class LecturaFiltroView(APIView):
             raise Http404
     
     def get(self,request,format=None):
-        fecha_inicial = request.GET['fecha_inicio'] # Cambia estas fechas según tu rango
-        fecha_final = request.GET['fecha_final'] 
+        #fecha_inicial = request.GET['fecha_inicio'] # Cambia estas fechas según tu rango
+        #fecha_final = request.GET['fecha_final'] 
 
-        #fecha_inicial = datetime.strptime(request.GET['fecha_inicio'], '%d/%m/%Y')   # Cambia estas fechas según tu rango
-        #fecha_final = datetime.strptime(request.GET['fecha_final'], '%d/%m/%Y') 
+
+        fecha_inicial = datetime.strptime(request.GET['fecha_inicio'], '%Y-%m-%dT%H:%M')   # Cambia estas fechas según tu rango
+        fecha_final = datetime.strptime(request.GET['fecha_final'], '%Y-%m-%dT%H:%M') 
 
         lista = Lectura.objects.filter(fecha_creacion__range=(fecha_inicial, fecha_final)) 
         #lista = Lectura.objects.all()

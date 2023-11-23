@@ -168,6 +168,11 @@
     padding: 10px;
 }
 
+.historico-contenedor-filtro button:active{
+    transform: scale(0.96);
+    transition-duration: 140ms;
+}
+
 /* fin del codigo para la seccion de historico*/
 
 

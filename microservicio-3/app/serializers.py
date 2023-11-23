@@ -4,8 +4,7 @@ from dataclasses import fields
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth.models import User
-
-
+from datetime import datetime
 #para agregar los Microcontroladores
 class MicroAddSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,4 +25,5 @@ class LecturaGraficaSerializer(serializers.ModelSerializer):
     def to_representation(self, data):
         temperatura = [item.temperatura for item in data]
         humedad = [item.humedad for item in data]
-        return {'lista_temperatura': temperatura, 'lista_humedad': humedad}
+        fecha = [ datetime.strftime(item.fecha_creacion, '%H:%M:%S') for item in data]
+        return {'lista_temperatura': temperatura, 'lista_humedad': humedad, 'lista_fechas': fecha}
