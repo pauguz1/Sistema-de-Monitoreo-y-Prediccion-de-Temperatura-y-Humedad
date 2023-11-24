@@ -10,32 +10,32 @@
        --redondo1: 50px;
        --redondo2: 20px;
        --redondo3: 10px;
-    
+
        --text-color1: black;
        --text-color2: white;
-    
+
        --color-gray: #cfd0d1;
        --color-green: #43A047;
        --color-alert: #e90c0c;
-    
+
        --relleno: 15px;
-    
+
        --color-gradient: #cfd0d1;
        --fuente: 'Roboto', sans-serif;
-    
+
        --font-size1: 22px;
        --font-size2: 18px;
        --font-size3: 15px;
        --font-size4: 14px;
-    
+
        --duracion-modal-pop: 190ms;
-    
-    
+
+
        --box-shadow:0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 var(--color-gradient);
        --box-shadow1: 0 0px 0px 0 var(--color-gradient), 0 0px 4px 0 #2f3238;
     }
 
-    
+
     .contenedor-primario{
        display: flex;
        justify-content: center;
@@ -66,7 +66,7 @@
        user-select: none;
     }
 
-    
+
     .contenedor-slide{
        display: flex;
        align-items: center;
@@ -135,7 +135,7 @@
 
 </style>
 <body>
-  
+
 
     <div class="contenedor-primario">
         <h2>Microntrolador enviando datos a el socket cada 1 segundo</h2>
@@ -178,7 +178,7 @@
         let humedadRandom = Math.floor(Math.random() * (maxHumedad - minHumedad + 1)) + minHumedad;
         var lectura = String(temperaturaRandom)+','+String(humedadRandom);
         socketLectura.send(JSON.stringify({ type: 'message', message:lectura }));
-        }, 1100);
+      }, 500);
 
   </script>
 </body>

@@ -5,6 +5,6 @@
 
 #ignoramos los entornos virtuales de los microservicios
 
-./microservicio-2/.env/*
-./microservicio-3/.env/*
-./microservicio-4/.env/*
+microservicio-2/.env
+microservicio-3/.env
+microservicio-4/.env
