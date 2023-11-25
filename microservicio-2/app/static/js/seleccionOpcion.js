@@ -51,7 +51,7 @@ function actualizrPath(info){
 function mostrarOpcionMonitoreo(actualizar){
     if(actualizar == true){
         //actualizamos el path
-        actualizrPath('?s=monitoroe');
+        actualizrPath('?s=monitoreo');
     }
     //seleccionamos el boton de monitoreo (fondo negro)
     activarBotonSeleccionado('btn-opcion-monitoreo');
