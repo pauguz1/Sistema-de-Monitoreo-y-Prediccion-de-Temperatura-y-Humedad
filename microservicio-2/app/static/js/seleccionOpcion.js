@@ -22,9 +22,10 @@ function moverPaginaInicio(){
  * Este metodo pone un boton que pasemos como parametro en negro y todos los que
  * no sean ese boton en blanco del contenedor de opciones del sistema
  */
-function activarBotonSeleccionado(boton){
+function activarBotonSeleccionado(id){
     document.querySelectorAll('.contenedor-opciones button').forEach((b)=>{
-        if(boton == b){
+        if( b.id == id){
+            let boton = document.getElementById(b.id);//obtenemos el boton
             boton.classList.add('boton-si-seleccionado');
             boton.classList.remove('boton-no-seleccionado');
         }else{
@@ -35,11 +36,25 @@ function activarBotonSeleccionado(boton){
 }
 
 /**
+ * Este metodo actualiza el path de la pagina sin recarga la pagina
+ * @param {nuevo path} info 
+ */ 
+function actualizrPath(info){
+    history.pushState({}, '', info);
+}
+/**
  * Este metodo muestra el contenido de la seccion de Monitoreo en contenedor que contiene la opcion seleccionada
  * para que el usuario pueda ver el monitoreo
  * actica todos lo referene a dicha seccion
+ * @param {para saber si se va a actualiar el path o no} actualizar 
  */
-function mostrarOpcionMonitoreo(){
+function mostrarOpcionMonitoreo(actualizar){
+    if(actualizar == true){
+        //actualizamos el path
+        actualizrPath('?s=monitoroe');
+    }
+    //seleccionamos el boton de monitoreo (fondo negro)
+    activarBotonSeleccionado('btn-opcion-monitoreo');
     //si el web socket de monitoreo en tiempo real esta corriendo entonces lo cerramos
     cerrarTodosLosWebSockets();
 
@@ -76,8 +91,15 @@ function mostrarOpcionMonitoreo(){
 /**
  * Este metodo muestra el contenido de la seccion de Historico en contenedor que contiene la opcion seleccionada
  * para que el usuario pueda realizar las opciones de historico
+ * @param { indica si se va a actualizar el path o no} actualizar 
  */
-function mostrarOpcionHistorico(){
+function mostrarOpcionHistorico(actualizar){
+    if(actualizar == true){
+        //actualizamos el path
+        actualizrPath('?s=historico');
+    }
+    //seleccionamos el boton de historico (fondo negro)
+    activarBotonSeleccionado('btn-opcion-historico');
     //obtenemos el contenedor total el cual contiene toda la informacion de una opcion seleccionada
     let contenedor = document.querySelector('.contenedor-total');
     //eliminamos el primer elemento que es el contenedor de una opcion (solo hay una opcion a la vez)
@@ -118,8 +140,16 @@ function mostrarOpcionHistorico(){
 /**
  * Este metodo muestra el contenido de la seccion de Historico en contenedor que contiene la opcion seleccionada
  * para que el usuario pueda realizar las opciones de historico
+ * @param {para saber si se va a actualizar el path o no} actualizar  
  */
-function mostrarOpcionPrediccion(){
+function mostrarOpcionPrediccion(actualizar){
+    console.log(actualizar)
+    if(actualizar == true){
+        //actualizamos el path
+        actualizrPath('?s=prediccion');
+    }
+    //seleccionamos el boton de prediccion (fondo negro)
+    activarBotonSeleccionado('btn-opcion-prediccion');
     //si el web socket de monitoreo en tiempo real esta corriendo entonces lo cerramos
     cerrarTodosLosWebSockets();
 
@@ -145,5 +175,38 @@ function mostrarOpcionPrediccion(){
     moverPaginaInicio();
 }
 
-//presionamos el boton Monitoreo ya que es la primera opcion
-document.querySelector('.contenedor-opciones').children[0].click();
+
+/**
+ * Este metodo muestra en pantalla la opcion seleccionada acorde a 
+ * las variables del path ?s='opcion'
+ * @param {para saber si se va a actualizar el path o no} actualizar 
+ */
+function mostrarOpcionSeleccionada(actualizar){
+    let path = window.location.search;
+    //Creamos la instancia para obtener los parametros
+    let parametros = new URLSearchParams(path);
+    //Accedemos a los valores
+    var opcinoSeleccionada = parametros.get('s');
+    if(opcinoSeleccionada == null || opcinoSeleccionada == 'monitoreo'){// si la variable es null o monitoreo mostramos el monitoreo
+        mostrarOpcionMonitoreo(actualizar);
+    }else if(opcinoSeleccionada == 'historico'){//si la variable dice historico mostramos el historico
+        mostrarOpcionHistorico(actualizar);
+    }else if( opcinoSeleccionada == 'prediccion'){//si la variable dice prediccion mostramos la opcin de prediccion
+        mostrarOpcionPrediccion(actualizar);
+    }else{
+        mostrarOpcionMonitoreo(actualizar);
+    }
+}
+
+
+//revisamos que opcion fue seleccionada por el usuario
+mostrarOpcionSeleccionada(false);
+
+
+/**
+ * Este metodo detecta cuando el usuario hace un retroceso en la pagina
+ * y muestra la opcion seleccionada sin cambiar el historial
+ */
+window.addEventListener('popstate', function(event) {
+    mostrarOpcionSeleccionada(false);
+});
