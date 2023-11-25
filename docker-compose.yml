@@ -1,5 +1,17 @@
 version: '3.8'
 services:
+  postgres:
+    image: postgres
+    container_name: postgresDB2
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: userDB
+      POSTGRES_PASSWORD: passwordDB
+    volumes:
+      - ./microservicio-3/postgres_data:/var/lib/postgresql/data
+
   microservicio1:
     container_name: microservicio1-websocket
     build: ./microservicio-1
@@ -13,16 +25,19 @@ services:
     build: ./microservicio-2
     container_name: microservicio2_web
     ports:
-      - "8000:8000"
+      - "80:8000"
     volumes:
       - ./microservicio-2:/app
     command: ["python", "manage.py", "runserver", "0:8000"]
+  
 
   microservicio3:
     build: ./microservicio-3
     container_name: microservicio3_api_historico
     ports:
       - "8001:8001"
+    depends_on:
+      - postgres
     volumes:
       - ./microservicio-3:/app
     command: ["python", "manage.py", "runserver", "0:8001"]
@@ -32,6 +47,11 @@ services:
     container_name: microservicio4_api_prediccion
     ports:
       - "8002:8002"
+    depends_on:
+      - postgres
     volumes:
       - ./microservicio-4:/app
     command: ["python", "manage.py", "runserver", "0:8002"]
+
+volumes:
+  postgres_data:

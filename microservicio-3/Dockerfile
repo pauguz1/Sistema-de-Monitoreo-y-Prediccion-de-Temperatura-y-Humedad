@@ -12,6 +12,13 @@ ADD . .
 
 RUN pip install -r requirements.txt
 
+# realizar las migrationes
+RUN python manage.py makemigrations &
+RUN python manage.py migrate &
+
+#para generar el usuario
+#RUN python script.py
+
 
 
 EXPOSE 8001

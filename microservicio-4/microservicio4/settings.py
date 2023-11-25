@@ -94,10 +94,15 @@ WSGI_APPLICATION = 'microservicio4.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# Configuración de la base de datos PostgreSQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',
+        'USER': 'userDB',
+        'PASSWORD': 'passwordDB',
+        'HOST': 'postgresDB2',
+        'PORT': '5432',
     }
 }
 

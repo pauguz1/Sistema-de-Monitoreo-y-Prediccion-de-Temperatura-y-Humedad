@@ -12,6 +12,10 @@ ADD . .
 
 RUN pip install -r requirements.txt
 
+# realizar las migrationes
+RUN python manage.py makemigrations &
+RUN python manage.py migrate &
+
 EXPOSE 8002
 
 CMD ["python", "manage.py", "runserver", "0:8002"]

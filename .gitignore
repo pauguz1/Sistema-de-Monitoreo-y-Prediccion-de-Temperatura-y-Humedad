@@ -7,4 +7,5 @@
 
 microservicio-2/.env
 microservicio-3/.env
+microservicio-3/postgres_data
 microservicio-4/.env
