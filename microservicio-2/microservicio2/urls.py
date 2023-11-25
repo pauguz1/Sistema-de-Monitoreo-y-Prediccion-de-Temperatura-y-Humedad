@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.views.generic import RedirectView   
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('app.urls')),
+    
+    # Ruta para redirigir a la página de inicio cuando se acceda a un path inexistente
+    path('<path:not_found>/', RedirectView.as_view(url='/'), name='not_found_redirect'),
 ]
