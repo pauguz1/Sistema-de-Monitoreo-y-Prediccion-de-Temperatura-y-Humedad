@@ -8,7 +8,11 @@ wss.on('connection', function connection(ws) {
   let currentChannel = null;
 
   ws.on('message', function incoming(message) {
+    //const buffer = Buffer.from(message, 'utf-8');
+    //console.log('mensaje:',buffer.toString('utf-8'));
+    
     const data = JSON.parse(message);
+
     if (data.type === 'subscribe') {
       const { channel } = data;
       if (!channels[channel]) {
@@ -18,12 +22,13 @@ wss.on('connection', function connection(ws) {
       currentChannel = channel;
       console.log(`Usuario suscrito al canal ${channel}`);
     } else if (data.type === 'message' && currentChannel) {
-      const { message: content } = data;
+      //const { message: content } = data;
       const channelClients = channels[currentChannel];
       if (channelClients) {
         for (let client of channelClients) {
           if ( client.readyState === WebSocket.OPEN) {
-            client.send(JSON.stringify({ sender: currentChannel, content }));
+            //client.send(JSON.stringify({ sender: currentChannel, content }));
+            client.send(JSON.stringify(data));
           }
         }
       }

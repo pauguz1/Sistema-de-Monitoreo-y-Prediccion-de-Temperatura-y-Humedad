@@ -177,7 +177,7 @@
         let maxHumedad = 15;
         let humedadRandom = Math.floor(Math.random() * (maxHumedad - minHumedad + 1)) + minHumedad;
         var lectura = String(temperaturaRandom)+','+String(humedadRandom);
-        socketLectura.send(JSON.stringify({ type: 'message', message:lectura }));
+        socketLectura.send(JSON.stringify({ type: 'message', content:lectura }));
       }, 400);
 
   </script>
