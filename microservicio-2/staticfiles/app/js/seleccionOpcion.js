@@ -143,7 +143,7 @@ function mostrarOpcionHistorico(actualizar){
  * @param {para saber si se va a actualizar el path o no} actualizar  
  */
 function mostrarOpcionPrediccion(actualizar){
-    console.log(actualizar)
+    //console.log(actualizar)
     if(actualizar == true){
         //actualizamos el path
         actualizrPath('?s=prediccion');

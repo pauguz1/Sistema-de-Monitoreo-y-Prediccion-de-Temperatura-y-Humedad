@@ -45,10 +45,10 @@ void setup() {
     pinMode(pin,OUTPUT);
 
     //almacenamos los datos en la EEPROM 
-    //S.setHostSocket("192.168.1.14");
-    //S.setHostServer("http://192.168.1.14:8001");
-    //S.setNombreRed("");
-    //S.setPasswordRed("");
+    S.setHostSocket("10.2.83.89");
+    S.setHostServer("http://10.2.83.89:8001");
+    S.setNombreRed("UAZ-Alumnos");
+    S.setPasswordRed("");
 
     //obtenemos los nonbres de la red de la EEPROM
     nombreRed = S.getNombreRed();

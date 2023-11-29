@@ -1,57 +1,126 @@
 version: '3.8'
 services:
+
+  api_gateway_sistema_monitoreo_temperatura_humedad:
+    container_name: api_gateway_sistema_monitoreo_temperatura_humedad
+    image: nginx:latest
+    depends_on:
+      - servidor_microservicio_1_monitoreo
+      - servidor_microservicio_2_monitoreo
+      - servidor_microservicio_3_monitoreo
+      - servidor_microservicio_4_monitoreo
+    volumes:
+      - ./api_gateway/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    networks:
+      - internal_network
+#--------------------    Base de datos
   postgres:
     image: postgres
     container_name: postgresDB2
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_DB: mydatabase
       POSTGRES_USER: userDB
       POSTGRES_PASSWORD: passwordDB
     volumes:
       - ./microservicio-3/postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal_network
+
+#-------------------------- Servidores  ---------------------------
+  servidor_microservicio_1_monitoreo:
+    container_name: servidor_microservicio_1_monitoreo
+    image: nginx:latest
+      
+    depends_on:
+      - microservicio1
+    volumes:
+      - ./microservicio-1/nginx.conf:/etc/nginx/nginx.conf
+      - ./microservicio-1:/app
+    networks:
+      - internal_network
+
+  servidor_microservicio_2_monitoreo:
+    container_name: servidor_microservicio_2_monitoreo
+    image: nginx:latest
+    depends_on:
+      - microservicio2
+    volumes:
+      - ./microservicio-2/nginx.conf:/etc/nginx/nginx.conf
+      - ./microservicio-2:/app
+    networks:
+      - internal_network
+      
+  servidor_microservicio_3_monitoreo:
+    container_name: servidor_microservicio_3_monitoreo
+    image: nginx:latest
+    depends_on:
+      - microservicio3
+    volumes:
+      - ./microservicio-3/nginx.conf:/etc/nginx/nginx.conf
+      - ./microservicio-3:/app
+    networks:
+      - internal_network
+
+  servidor_microservicio_4_monitoreo:
+    container_name: servidor_microservicio_4_monitoreo
+    image: nginx:latest
+    depends_on:
+      - microservicio4
+    volumes:
+      - ./microservicio-4/nginx.conf:/etc/nginx/nginx.conf
+      - ./microservicio-4:/app
+    networks:
+      - internal_network
+
+
+
+
+#---------------    Microservicio 1   -------------------------------------------------
+
 
   microservicio1:
     container_name: microservicio1-websocket
     build: ./microservicio-1
-    ports:
-      - "8080:8080"
     volumes:
       - ./microservicio-1:/app
-    command: ["node", "websocket-server.js"]
+    networks:
+      - internal_network
 
   microservicio2:
     build: ./microservicio-2
     container_name: microservicio2_web
-    ports:
-      - "80:8000"
     volumes:
       - ./microservicio-2:/app
-    command: ["python", "manage.py", "runserver", "0:8000"]
+    networks:
+      - internal_network
   
 
   microservicio3:
     build: ./microservicio-3
     container_name: microservicio3_api_historico
-    ports:
-      - "8001:8001"
     depends_on:
       - postgres
     volumes:
       - ./microservicio-3:/app
-    command: ["python", "manage.py", "runserver", "0:8001"]
+    networks:
+      - internal_network
 
   microservicio4:
     build: ./microservicio-4
     container_name: microservicio4_api_prediccion
-    ports:
-      - "8002:8002"
     depends_on:
       - postgres
     volumes:
       - ./microservicio-4:/app
-    command: ["python", "manage.py", "runserver", "0:8002"]
+    networks:
+      - internal_network
 
 volumes:
   postgres_data:
+  
+networks:
+  internal_network:
+    driver: bridge
+  

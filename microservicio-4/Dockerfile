@@ -18,4 +18,5 @@ RUN python manage.py migrate &
 
 EXPOSE 8002
 
-CMD ["python", "manage.py", "runserver", "0:8002"]
+# Comando para ejecutar Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8002", "microservicio4.wsgi:application"]  

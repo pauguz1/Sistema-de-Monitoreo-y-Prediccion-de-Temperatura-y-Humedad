@@ -62,7 +62,7 @@
             //------------------------------------ Instanciacion de los sockets y los agregamos a la lista de websockets
         //para mandar el estado de la lectura
         var hostname = window.location.hostname;
-        var socketLectura = new WebSocket('ws://'+hostname+':8080');
+        var socketLectura = new WebSocket('ws://'+hostname+'/microservicio1');
 
         webSocketsAbiertos.push(socketLectura);//agregamos el websocket a la lista de web sockets abiertos
 

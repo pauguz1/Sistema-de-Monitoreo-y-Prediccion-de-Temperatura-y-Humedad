@@ -1,7 +1,7 @@
 
 //------- Codigo que se encarga del historico
    
-var urlFiltrarHistorico = 'http://'+window.location.hostname+':8001/'
+var urlFiltrarHistorico = 'http://'+window.location.hostname+'/microservicio3/'
 function filtrarHistorico(){
     var canvas3 = document.getElementById('grafica-historico-temperatura').getContext('2d');//seleccionamos el canvas
     var canvas4 = document.getElementById('grafica-historico-humedad').getContext('2d');//seleccionamos el canva

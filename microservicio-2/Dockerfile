@@ -18,5 +18,5 @@ RUN pip install -r requirements.txt
 # Puerto en el que el contenedor va a escuchar (debe coincidir con el expuesto en docker-compose.yml)
 EXPOSE 8000
 
-# Comando para ejecutar el servidor Django (aquí se puede cambiar para cualquier otro comando necesario)
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Comando para ejecutar Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "microservicio2.wsgi:application"]  

@@ -1,7 +1,7 @@
 
 //------- Codigo que se encarga del monitoreo en tiempo real
 
-var urlPrediccion = 'http://'+window.location.hostname+':8002/prediccion/predecir'
+var urlPrediccion = 'http://'+window.location.hostname+'/microservicio4/prediccion/predecir'
         
 function obtenerPrediccion(){
     let contenedores = document.querySelectorAll('.prediccion-contenedor-resultados');
